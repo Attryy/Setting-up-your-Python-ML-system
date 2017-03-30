@@ -12,9 +12,9 @@ These notes were made assuming that the reader is using Linux, preferably an Ubu
 
 # Add this to your .bashrc file:
 #CUDA
- $ export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}
- $ export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64\
-                          ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64\
+                         ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 # restart system
 
@@ -57,19 +57,20 @@ These notes were made assuming that the reader is using Linux, preferably an Ubu
 
 # Add this to your .bashrc (some of it will be used later). Replace '/home/username' with the path to your home directory. Replace the Python version with the version you installed.
 
-# PYTHON 3.6.1
-alias py36='/home/username/.ml36/bin/python3.6' # use this python
-alias pip36='/home/username/.ml36/bin/pip3.6' # to install packages within our venv
-alias jupyter-notebook_36='/home/username/.ml36/bin/jupyter-notebook' # Jupyter Notebook
-alias jupyter-themer='/home/username/.ml36/bin/jupyter-themer' # to change Jupyter theme
-# activate the py36 virtual environment
-act_ml36 () {
-  . /home/username/.ml36/bin/./activate
-}
-# deactivate the virtual environment
-alias deact='deactivate'
-# the Atom editor
-alias atom36='act_ml36; atom; deactivate'
+    # PYTHON 3.6.1
+    alias py36='/home/username/.ml36/bin/python3.6' # use this python
+    alias pip36='/home/username/.ml36/bin/pip3.6' # to install packages within our venv
+    alias jupyter-notebook_36='/home/username/.ml36/bin/jupyter-notebook' # Jupyter Notebook
+    alias jupyter-themer='/home/username/.ml36/bin/jupyter-themer' # to change Jupyter theme
+    # activate the py36 virtual environment
+    act_ml36 () {
+      . /home/username/.ml36/bin/./activate
+    }
+    # deactivate the virtual environment
+    alias deact='deactivate'
+
+    # the Atom editor
+    alias atom36='act_ml36; atom; deactivate'
 
 
 # reload .bashrc
@@ -146,11 +147,17 @@ pip36 install keras
 # Change the Jupyter colors if you wish (OPTIONAL). I like 'midnight'
  $ jupyter-themer_36 -c 'midnight'
 
+###################################################################################################
 
+# Install Atom
+download the .deb from https://atom.io/
+# you can simply right-click to install it.
+# Did you notice that earlier we put an alias in our .bashrc for Atom? We did this so that Atom would open using our new version of Python instead of the one installed by default on our system.
+ $ atom36
 
 ###################################################################################################
 
-if you find yourself needing XGBoost, here is how it's installed:
+if you find yourself needing XGBoost for machine learning tasks, here is how it's installed:
 
 git clone --recursive https://github.com/dmlc/xgboost
 cd xgboost
@@ -161,8 +168,7 @@ py36 setup.py install
 deact
 
 ###################################################################################################
-# That's most everything you'll need to get started with Machine Learning. Since I often work with
-# sequences of images though, I also want to install OpenCV in my virtual environment.
+# That's most everything you'll need to get started with Machine Learning. Since I often work with sequences of images though, I also want to install OpenCV in my virtual environment.
 
 # Install these dependencies first
  $ sudo apt-get install build-essential cmake pkg-config
@@ -183,15 +189,15 @@ deact
  $ cd build
  $ act_ml36
  $ cmake -D CMAKE_BUILD_TYPE=RELEASE \
-         -D CMAKE_INSTALL_PREFIX=/home/telemaque/.ml36/lib/python3.6/site-packages/opencv \
+         -D CMAKE_INSTALL_PREFIX=/home/username/.ml36/lib/python3.6/site-packages/opencv \
          -D INSTALL_PYTHON_EXAMPLES=ON \
          -D INSTALL_C_EXAMPLES=OFF \
          -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib-3.2.0/modules \
          -D PYTHON_EXECUTABLE=/opt/python3.6/bin/python3.6 \
          -D PYTHON_INCLUDE=/opt/python3.6/include/python3.6m \
          -D PYTHON_LIBRARY=/opt/python3.6/lib/libpython3.6.so \
-         -D PYTHON_PACKAGES_PATH=/home/telemaque/.ml36/lib/python3.6/site-packages \
-         -D PYTHON_NUMPY_INCLUDE_DIR=/home/telemaque/.ml36/lib/python3.6/site-packages/numpy/core/include/numpy \
+         -D PYTHON_PACKAGES_PATH=/home/username/.ml36/lib/python3.6/site-packages \
+         -D PYTHON_NUMPY_INCLUDE_DIR=/home/username/.ml36/lib/python3.6/site-packages/numpy/core/include/numpy \
          -D BUILD_EXAMPLES=ON ..
  $ make -j4
 ((if any errors encountered, try make with only one core:  make clean , make))
@@ -200,7 +206,7 @@ deact
  $ sudo ldconfig
 
 # make symlink to OpenCV in new Python site-packages dir
- $ cd /home/telemaque/.ml36/lib/python3.6/site-packages
- $ ln -s /home/telemaque/.ml36/lib/python3.6/site-packages/opencv/lib/python3.6/site-packages/cv2.cpython-36m-x86_64-linux-gnu.so cv2.so
+ $ cd /home/username/.ml36/lib/python3.6/site-packages
+ $ ln -s /home/username/.ml36/lib/python3.6/site-packages/opencv/lib/python3.6/site-packages/cv2.cpython-36m-x86_64-linux-gnu.so cv2.so
 
-
+ $ deact
