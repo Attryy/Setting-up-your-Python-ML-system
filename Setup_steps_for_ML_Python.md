@@ -224,7 +224,7 @@ Get OpenCV from the Git Repository
 `$ mkdir build`  
 `$ cd build`  
 `$ act_ml36`  
-Since the following cmake command spans so many lines, cut and paste it into a text editor. Replace 'username' with your username. Then cut and paste that at the BASH prompt.  
+Since the following cmake command spans so many lines, copy and paste it into a text editor. Replace 'username' with your username. Then copy and paste that at the BASH prompt.  
 `$ cmake -D CMAKE_BUILD_TYPE=RELEASE \`  
          `-D CMAKE_INSTALL_PREFIX=/home/username/.ml36/lib/python3.6/site-packages/opencv \`  
          `-D INSTALL_PYTHON_EXAMPLES=ON \`  
