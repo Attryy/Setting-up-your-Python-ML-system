@@ -237,11 +237,11 @@ Since the following cmake command spans so many lines, cut and paste it into a t
          `-D PYTHON_NUMPY_INCLUDE_DIR=/home/username/.ml36/lib/python3.6/site-packages/numpy/core/include/numpy \`  
          `-D BUILD_EXAMPLES=ON ..`  
          
-$ make -j4
-((if any errors encountered, try make with only one core:  make clean , make))
+`$ make -j4`  
+((if any errors encountered, try make with only one core:  make clean , make))  
 
-$ make install  
-$ sudo ldconfig  
+`$ make install`    
+`$ sudo ldconfig`    
 
 Make symlink to OpenCV in new Python site-packages directory  
 `$ cd /home/username/.ml36/lib/python3.6/site-packages`  
