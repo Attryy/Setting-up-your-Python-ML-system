@@ -27,11 +27,11 @@ uncompress and copy the cudnn files to appropriate dirs in /usr/local/cuda-8.0/
 **_Section 2_** - Download and Build Python 3.6.1 on Your System. Then set up a Virtual Environment  
 
 before installing Python, install the following dependencies  
-`$ sudo apt-get update`  
-`$ sudo apt-get upgrade`  
-`$ sudo apt-get install libbz2-dev liblzma-dev libsqlite3-dev libncurses5-dev libgdbm-dev zlib1g-dev libreadline-dev libssl-dev libssl-dev make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev cmake unzip git pkg-config gdb`  
-`$ sudo apt-get install tcl-dev tk-dev python-tk python3-tk python3-tksnack`  
-`$ sudo apt-get install libopenblas-dev liblapack-dev`  
-`$ sudo apt-get install libgtk-3-dev`  
+`$ sudo apt-get update 
+ $ sudo apt-get upgrade  
+ $ sudo apt-get install libbz2-dev liblzma-dev libsqlite3-dev libncurses5-dev libgdbm-dev zlib1g-dev libreadline-dev libssl-dev ibssl-dev make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev cmake unzip git pkg-config gdb  
+ $ sudo apt-get install tcl-dev tk-dev python-tk python3-tk python3-tksnack  
+ $ sudo apt-get install libopenblas-dev liblapack-dev  
+ $ sudo apt-get install libgtk-3-dev`  
 
 
