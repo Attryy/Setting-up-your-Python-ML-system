@@ -250,3 +250,21 @@ Make symlink to OpenCV in new Python site-packages directory
 `$ ln -s /home/username/.ml36/lib/python3.6/site-packages/opencv/lib/python3.6/site-packages/cv2.cpython-36m-x86_64-linux-gnu.so cv2.so`  
 
 `$ deact`  
+  
+  
+
+## _CONCLUSION_  
+
+We can now use three of our BASH aliases to use our new Python 3.6.1.
+
+To run the Python interpreter in the terminal window, just type:  
+`$ py36`
+
+To run a Jupyter notebook powered by our new Python 3.6 installation, just type:  
+`$ jupyter-notebook_36`  
+
+To code in Atom with the ability to execute the code (with Ctrl+Shift+B) with our new version of Python instead of the default version on our system, just type:  
+`$ atom36`  
+
+  
+If you find any error or have any questions, please open an issue and I will respond.
