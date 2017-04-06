@@ -168,10 +168,19 @@ Test the install
 
 Is the tensorflow backend used?  
 
-Ctrl+D to exit.  
+Ctrl+D to exit.   
 
 
-## _Section 5_ - XGBoost
+## _Section 5_ - Install Atom
+In case you don't already know, Atom is a hackable text editor. When I say hackable, I mean that you can configure just about anything you want configured. It can be used to code almost any language you can think of. I'm using it now to create this markdown document.  
+
+Download the .deb from https://atom.io/  
+You can simply right-click to install it.  
+Did you notice that earlier we put an alias in our .bashrc for Atom? We did this so that Atom would open using our new version of Python instead of the one installed by default on our system.  
+` $ atom36`  
+
+
+## _Section 6_ - XGBoost
 XGBoost is a gradient boosting library. Chances are that if you stick with ML for a while, you will find yourself wanting it. Install it this way:  
 
 `$ git clone --recursive https://github.com/dmlc/xgboost`  
@@ -180,16 +189,7 @@ XGBoost is a gradient boosting library. Chances are that if you stick with ML fo
 `$ cd python-package`  
 `$ act_ml36`  
 `$ py36 setup.py install`  
-`$ deact`  
-
-
-## _Section 6_ - Install Atom
-In case you don't already know, Atom is a hackable text editor. When I say hackable, I mean that you can configure just about anything you want configured. It can be used to code almost any language you can think of. I'm using it now to create this markdown document.  
-
-Download the .deb from https://atom.io/  
-You can simply right-click to install it.  
-Did you notice that earlier we put an alias in our .bashrc for Atom? We did this so that Atom would open using our new version of Python instead of the one installed by default on our system.  
-` $ atom36`  
+`$ deact` 
 
 
 ## _Section 7_ - Jupyter  
@@ -204,7 +204,7 @@ Then start Jupyter to check that the change took effect.
 
 ## _Section 8_ - OpenCV 3   
 
-That's most everything you'll need to get started with Machine Learning. Since I often work with sequences of images though, I also want to install OpenCV in my virtual environment.  
+That's most everything you'll need to get started with Machine Learning. Since I often work with sequences of images though, I also want to install OpenCV in my virtual environment. This is an optional section. It only applies to those planning to mix CV (computer vision) with their ML (machine learning).  
 
 Install these dependencies first  
 `$ sudo apt-get install build-essential cmake pkg-config`  
@@ -237,7 +237,7 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D PYTHON_PACKAGES_PATH=/home/username/.ml36/lib/python3.6/site-packages \
       -D PYTHON_NUMPY_INCLUDE_DIR=/home/username/.ml36/lib/python3.6/site-packages/numpy/core/include/numpy \
       -D BUILD_EXAMPLES=ON ..
-```
+```  
          
 `$ make -j4`  
 If any errors encountered, try make with only one core:  "make clean", then "make"  
@@ -251,7 +251,20 @@ Make symlink to OpenCV in new Python site-packages directory
 
 `$ deact`  
   
-  
+ 
+## _Section 9_ - MongoDB and PyMongo  
+
+This should be regarded as another purely optional section. MongoDB is a NoSQL database which has become quite popular. The PyMongo distribution contains tools for interacting with MongoDB database from Python.  
+
+First, install MongoDB by following the few steps listed here:  
+https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/  
+
+
+Now install PyMongo  
+`$ act_ml36`  
+`$ py36 -m pip install pymongo`  
+`$ deact`  
+
 
 ## _CONCLUSION_  
 
