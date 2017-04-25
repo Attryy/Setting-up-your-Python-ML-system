@@ -136,7 +136,7 @@ It works! Type Ctrl-D to exit the interpreter and go back to the shell.
 Use one of the aliases you created in your .bashrc file to activate the virtual environment.  
 `$ act_ml36`  
 
-Do you see that now each command line begins with (.ml36)? Now the virtual environment is activated. We need to do this before we install packages so that they will be installed in the right place, and therefore be useable by our virtual Python.  
+Do you see that now each command line begins with (.ml36)? Now the virtual environment is activated. We need to do this before we install packages so that they will be installed in the right place, and therefore be usable by our virtual Python.  
 
 Install some necessary / useful packages  
 `$ pip36 install numpy scipy`  
@@ -147,9 +147,10 @@ Install some necessary / useful packages
 `$ pip36 install numpydoc`  
 `$ pip36 install scikit-image`  
 `$ pip36 install nose`  
-`$ pip36 install jupyter`  
-`$ pip36 install jupyter-themer`  
 `$ pip36 install pandas`  
+`$ pip36 install seaborn`  
+`$ pip36 install jupyter`  
+`$ pip36 install jupyter-themer`    
 
 Install TensorFlow  
 If you don't have a GPU:    
@@ -174,7 +175,7 @@ Ctrl+D to exit.
 
 
 ## _Section 5_ - Get Bayesian with PyMC3
-PyMC3 is a Python library for probabilistic programming. I'm working through Osvaldo Martin's book *Bayesian Analysis with Python* and am really beginning to respect the power of this Bayesian framework. Thomas Wiecki, Lead Data Scientist at Quantopian Inc. and author of PyMC3, has a blog http://twiecki.github.io/
+PyMC3 is a Python library for probabilistic programming. I'm working through Osvaldo Martin's book *Bayesian Analysis with Python* and am really beginning to respect the power of this Bayesian framework. Thomas Wiecki, Lead Data Scientist at Quantopian Inc., and one of the authors of PyMC3, has a blog wherein he has shown the feasibility and indeed the utility of "Bayesian Deep Learning"; it can be found here: http://twiecki.github.io.
 
 PyMC3 uses Theano, which requires a BLAS library. First, then, install OpenBLAS like so:  
 `$ cd ~/`  
