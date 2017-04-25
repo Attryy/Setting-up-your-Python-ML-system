@@ -173,7 +173,24 @@ Is the tensorflow backend used?
 Ctrl+D to exit.   
 
 
-## _Section 5_ - Install Atom
+## _Section 5_ - Get Bayesian with PyMC3
+PyMC3 is a Python library for probabilistic programming. I'm working through Osvaldo Martin's book *Bayesian Analysis with Python* and am really beginning to respect the power of this Bayesian framework. Thomas Wiecki, Lead Data Scientist at Quantopian Inc. and author of PyMC3, has a blog http://twiecki.github.io/
+
+PyMC3 uses Theano, which requires a BLAS library. First, then, install OpenBLAS like so:  
+`$ cd ~/`  
+`$ git clone https://github.com/xianyi/OpenBLAS`  
+`$ cd OpenBLAS`  
+`$ make FC=gfortran`  
+`$ make PREFIX=/home/telemaque/.ml36/lib/python3.6/site-packages/OpenBLAS install`  
+
+Now install the latest, bleeding-edge, development version of Theano with:  
+`$ pip36 install --upgrade --no-deps git+git://github.com/Theano/Theano.git`  
+
+Finally, install the development version of PyMC3:  
+`$ pip36 install git+https://github.com/pymc-devs/pymc3`  
+
+
+## _Section 6_ - Install Atom
 In case you don't already know, Atom is a hackable text editor. When I say hackable, I mean that you can configure just about anything you want configured. It can be used to code almost any language you can think of. I'm using it now to create this markdown document.  
 
 Download the .deb from https://atom.io/  
@@ -182,7 +199,7 @@ Did you notice that earlier we put an alias in our .bashrc for Atom? We did this
 ` $ atom36`  
 
 
-## _Section 6_ - XGBoost
+## _Section 7_ - XGBoost
 XGBoost is a gradient boosting library. Chances are that if you stick with ML for a while, you will find yourself wanting it. Install it this way:  
 
 `$ git clone --recursive https://github.com/dmlc/xgboost`  
@@ -194,7 +211,7 @@ XGBoost is a gradient boosting library. Chances are that if you stick with ML fo
 `$ deact` 
 
 
-## _Section 7_ - Jupyter  
+## _Section 8_ - Jupyter  
 We installed Jupyter above. We then installed Jupyter-themer. I prefer dark themes for when I code so I use the color 'midnignt'. Go to the Jupyter-themer page and see what you might like best.  
 
 Change the Jupyter notebook colors if you wish (OPTIONAL). I like 'midnight'  
@@ -204,7 +221,7 @@ Then start Jupyter to check that the change took effect.
 `$ jupyter-notebook_36`
 
 
-## _Section 8_ - OpenCV 3   
+## _Section 9_ - OpenCV 3   
 
 That's most everything you'll need to get started with Machine Learning. Since I often work with sequences of images though, I also want to install OpenCV in my virtual environment. This is an optional section. It only applies to those planning to mix CV (computer vision) with their ML (machine learning).  
 
@@ -254,7 +271,7 @@ Make symlink to OpenCV in new Python site-packages directory
 `$ deact`  
   
  
-## _Section 9_ - MongoDB and PyMongo  
+## _Section 10_ - MongoDB and PyMongo  
 
 This should be regarded as another purely optional section. MongoDB is a NoSQL database which has become quite popular. The PyMongo distribution contains tools for interacting with MongoDB database from Python.  
 
