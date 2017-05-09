@@ -1,9 +1,9 @@
 # **Setting up your Python Machine Learning system**
 *Set up a Python 3 virtual environment on an Ubuntu system for doing Machine Learning / Deep Learning*
 
-These notes assume that the reader has installed Linux, preferably an Ubuntu variant like Ubuntu-MATE, which is the best :) If you insist on using Windows, then these notes are not for you; try installing Anaconda for example, which seems to exist mostly to help Windows users do scientific/engineering coding in Python. If you are using Linux, however, there is no need for anything like Anaconda. Python 3 provides a native way to set up a virtual environment called 'venv', and for those stuck using Python 2.7, there is a package named 'virtualenv'. Below we will build Python 3.6 on our system in the /opt directory where it will be out of the way and we won't have to think about it anymore. Then we will install a virtual envirionment in our home directory which links to the /opt version we installed. Then we will use pip to install any package that we need into that virtual environment. Easy-peasy and we didn't have to install extra stuff like Anaconda to do hand-holding for us.  
+These notes assume that the reader has installed Linux, preferably an Ubuntu variant like Ubuntu-MATE, which is the best :) If you insist on using Windows, then these notes are not for you; try installing Anaconda for example, which seems to exist mostly to help Windows users do scientific/engineering coding in Python. If you are using Linux, however, there is no need for anything like Anaconda. Python 3 provides a native way to set up a virtual environment called 'venv', and for those stuck using Python 2.7, there is a package named 'virtualenv'. Below we will build Python 3.6 on our system in the /opt directory where it will be out of the way and we won't have to think about it anymore. Then we will install a virtual environment in our home directory which links to the /opt version we installed. Then we will use pip to install any package that we need into that virtual environment. Easy-peasy and we didn't have to install extra stuff like Anaconda to do hand-holding for us.  
 
-Below, Section 1 is only for those with a GPU; skip if you don't have one in your system and complete steps 2 through 5. The remaining sections 6 through 9 are optional. The Conclusion is simply to remind you of the ways you can invoke your new virtual Python ML setup.
+Below, Section 1 is only for those with a GPU; skip if you don't have one in your system and complete steps 2 through 5. The remaining sections 6 through 11 are optional. The Conclusion is simply to remind you of the ways you can invoke your new virtual Python ML setup.
 
 ## _Section 1_ - Installing CUDA & cuDNN for your GPU
 If you have an NVIDIA graphics card that can support CUDA 8, then you're all set. I recently bought a relatively inexpensive card, the GTX 1050 Ti. Training neural networks on this thing is considerably faster than on my CPU. When I think that for just a couple hundred $ more I could have gotten the GTX 1070....no, I will not think about that now. If you do not have a GPU in your system, then no problem, you can still do deep learning. It's true that the extremely long times required to train on some larger datasets without a GPU will limit what projects you are willing to undertake, but you will be able to learn to do deep learning nonetheless with smaller datasets. So, if you don't have a GPU, skip ahead to the next section, but if you do, then follow the instructions below: 
@@ -284,6 +284,32 @@ Now install PyMongo
 `$ act_ml36`  
 `$ py36 -m pip install pymongo`  
 `$ deact`  
+
+
+## _Section 11_ - dlib 
+
+Developed by Davis King, the dlib C++ library is a cross-platform package for threading, networking, numerical operations, machine learning, computer vision, and compression, placing a strong emphasis on extremely high-quality and portable code.   
+
+From a computer vision perspective, dlib has a number of state-of-the-art implementations, including:  
+* Facial landmark detection
+* Correlation tracking
+* Deep metric learning
+
+First, make sure the system dependencies are installed.  
+`$ sudo apt-get install build-essential cmake`  
+`$ sudo apt-get install libgtk-3-dev`  
+`$ sudo apt-get install libboost-all-dev`  
+
+Activate the virtual environment.  
+`$ act_ml36`  
+
+Install the following modules if not already installed.  
+`$ pip install numpy`  
+`$ pip install scipy`  
+`$ pip install scikit-image`  
+
+Finally, install dlib.  
+`pip36 install dlib`  
 
 
 ## _CONCLUSION_  
