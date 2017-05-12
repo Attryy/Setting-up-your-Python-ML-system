@@ -80,16 +80,16 @@ act_ml36 () {
 alias deact='deactivate'
 # the Atom editor
 alias atom36='act_ml36; atom; deactivate'
-
+```
 reload the .bashrc file to activate our changes  
 $ source ~/.bashrc
-```
+
 
 ## _Section 4_ - Set up the Python Virtual Environment
 
 Next we will run our new Python from the command line with the -m flag to create the new virtual environment. I decided to call my virtual environment **.ml36**, because I do Machine Learning (ML), but call yours whatever you like. I preceded the name with a . to make it a hidden directory.  
 
-`$ /opt/python3.6/bin/python3.6 -m venv .ml36 # to make the virtual envirionment`  
+`$ /opt/python3.6/bin/python3.6 -m venv .ml36`    
 
 Check for yourself that the new directory is there.
 
