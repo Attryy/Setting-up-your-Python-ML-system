@@ -75,7 +75,6 @@ alias jupyter-themer='/home/username/.ml36/bin/jupyter-themer' # to change Jupyt
 act_ml36 () {
   . /home/username/.ml36/bin/./activate
 }
-
 # deactivate the virtual environment
 alias deact='deactivate'
 # the Atom editor
