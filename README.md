@@ -3,7 +3,7 @@
 
 These notes assume that the reader has installed Linux, preferably an Ubuntu variant like Ubuntu-MATE, which is the best :) If you insist on using Windows, then these notes are not for you; try installing Anaconda for example, which seems to exist mostly to help Windows users do scientific/engineering coding in Python. If you are using Linux, however, there is no need for anything like Anaconda. Python 3 provides a native way to set up a virtual environment called 'venv', and for those stuck using Python 2.7, there is a package named 'virtualenv'. Below we will build Python 3.6 on our system in the /opt directory. Then we will install a virtual environment in our home directory which links to the /opt version we installed. Then we will use pip to install any package that we need into that virtual environment. Easy-peasy and we didn't have to install extra stuff like Anaconda to do hand-holding for us.  
 
-If you are unsatisfied with this virtual environment for some reason, or you would like to replace it with an updated version, you only can simply delete the directory and no trace will remain. You could even erase the version of Python in the /opt directory. 
+If you are unsatisfied with this virtual environment for some reason, or would like to replace it with an updated version, you can simply delete the directory and no trace will remain. You could even erase the version of Python in the /opt directory. 
 
 Below, Section 1 is only for those with a GPU; skip if you don't have one in your system and complete steps 2 through 5. The remaining sections 6 through 11 are optional. The Conclusion is simply to remind you of the ways you can invoke your new virtual Python ML setup.
 
