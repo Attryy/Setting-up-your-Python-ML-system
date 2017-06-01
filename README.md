@@ -5,7 +5,7 @@ These notes assume that the reader has installed Linux, preferably an Ubuntu var
 
 If you are unsatisfied with this virtual environment for some reason, or would like to replace it with an updated version, you can simply delete the directory and no trace will remain. You could even erase the version of Python in the /opt directory. 
 
-Below, Section 1 is only for those with a GPU; skip if you don't have one in your system and complete steps 2 through 5. The remaining sections 6 through 11 are optional. The Conclusion is simply to remind you of the ways you can invoke your new virtual Python ML setup.
+Below, Section 1 is only for those with a GPU; skip if you don't have one in your system and complete steps 2 through 4. The remaining sections 5 through 12 are optional. The Conclusion is simply to remind you of the ways you can invoke your new virtual Python ML setup.
 
 ## _Section 1_ - Installing CUDA & cuDNN for your GPU
 If you have an NVIDIA graphics card that can support CUDA 8, then you're all set. I recently bought a relatively inexpensive card, the GTX 1050 Ti. Training neural networks on this thing is considerably faster than on my CPU. When I think that for just a couple hundred $ more I could have gotten the GTX 1070....no, I will not think about that now. If you do not have a GPU in your system, then no problem, you can still do deep learning. It's true that the extremely long times required to train on some larger datasets without a GPU will limit what projects you are willing to undertake, but you will be able to learn to do deep learning nonetheless with smaller datasets. So, if you don't have a GPU, skip ahead to the next section, but if you do, then follow the instructions below: 
@@ -204,7 +204,33 @@ Did you notice that earlier we put an alias in our .bashrc for Atom? We did this
 ` $ atom36`  
 
 
-## _Section 7_ - XGBoost
+## _Section 7_ - Numba
+Numba runs Python functions through an LLVM just-in-time (JIT) compiler, resulting in orders-of-magnitude faster code for certain operations.  
+
+First, install llvm-4.0-dev. You are using Ubuntu, right? In Synaptic, add the following apt-line of the repository you want to add as source  
+"deb http://archive.ubuntu.com/ubuntu zesty main"  
+in Synaptic, install llvm-4.0-dev, and clang-4.0  
+Now you may uncheck these apt sources in the Synaptic sources menu. The following might need to be installd (not quite sure tbh)   
+$ sudo apt install zlib1g zlib1g-dev
+
+
+Install llvmlite [A lightweight LLVM python binding for writing JIT compilers http://llvmlite.pydata.org/]  
+`$ export LLVM_CONFIG="/usr/lib/llvm-4.0/bin/llvm-config"`  
+(note, not activating our virtual environment here)  
+`$ cd /home/telemaque/.ml36/lib/python3.6/site-packages`  
+`$ git clone https://github.com/numba/llvmlite`  
+`$ cd llvmlite`  
+`$ py36 setup.py build`  
+`$ py36 setup.py install`  
+
+Install (if not already) numpy (version 1.7 or higher)  
+
+Finally, install Numba  
+`$ act_ml36`  
+`$ pip36 install numba`  
+
+
+## _Section 8_ - XGBoost
 XGBoost is a gradient boosting library. Chances are that if you stick with ML for a while, you will find yourself wanting it. Install it this way:  
 
 `$ git clone --recursive https://github.com/dmlc/xgboost`  
@@ -216,7 +242,7 @@ XGBoost is a gradient boosting library. Chances are that if you stick with ML fo
 `$ deact` 
 
 
-## _Section 8_ - Jupyter  
+## _Section 9_ - Jupyter  
 We installed Jupyter above. We then installed Jupyter-themer. I prefer dark themes for when I code so I use the color 'midnignt'. Go to the Jupyter-themer page and see what you might like best.  
 
 Change the Jupyter notebook colors if you wish (OPTIONAL). I like 'midnight'  
@@ -226,7 +252,7 @@ Then start Jupyter to check that the change took effect.
 `$ jupyter-notebook_36`
 
 
-## _Section 9_ - OpenCV 3   
+## _Section 10_ - OpenCV 3   
 
 That's most everything you'll need to get started with Machine Learning. Since I often work with sequences of images though, I also want to install OpenCV in my virtual environment. This is an optional section. It only applies to those planning to mix CV (computer vision) with their ML (machine learning).  
 
@@ -276,7 +302,7 @@ Make symlink to OpenCV in new Python site-packages directory
 `$ deact`  
   
  
-## _Section 10_ - MongoDB and PyMongo  
+## _Section 11_ - MongoDB and PyMongo  
 
 This should be regarded as another purely optional section. MongoDB is a NoSQL database which has become quite popular. The PyMongo distribution contains tools for interacting with MongoDB database from Python.  
 
@@ -290,7 +316,7 @@ Now install PyMongo
 `$ deact`  
 
 
-## _Section 11_ - dlib 
+## _Section 12_ - dlib 
 
 Developed by Davis King, the dlib C++ library is a cross-platform package for threading, networking, numerical operations, machine learning, computer vision, and compression, placing a strong emphasis on extremely high-quality and portable code.   
 
