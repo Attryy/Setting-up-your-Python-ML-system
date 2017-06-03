@@ -64,7 +64,7 @@ Finished with this directory, cd back out and delete it
 
 ## _Section 3_ - Adding some aliases to .bashrc  
 
-Add the block below to your .bashrc file. Replace '/home/username' in the block below with the path to your home directory.  
+Add the block below to your .bashrc file. Replace '/home/username' in the block below with the path to your home directory. Note that I call my Python "py36". I also have Python 3.4 installed, which I invoke with "py34", to be clear which version I am using. If you will only use the one version, then you could simple call it "py3" for example.  
 ```
 # PYTHON 3.6.1  
 alias py36='/home/username/.ml36/bin/python3.6' # to use this Python
@@ -92,7 +92,7 @@ Next we will run our new Python from the command line with the -m flag to create
 
 Check for yourself that the new directory is there.
 
-`ls -la`
+`$ ls -la`
 
 Was the new .ml36 directory listed?
 
