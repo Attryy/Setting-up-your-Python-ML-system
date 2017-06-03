@@ -45,11 +45,11 @@ Make a directory in /opt to build our new Python
 `$ sudo mkdir /opt/python3.6/lib`  
 
 Download and uncompress Python  
- $ tar xvf Python-$RELEASE.tar.xz
- $ cd Python-$RELEASE
-(NOTE: we must run configure with the --enable-share flag in order to support theano)
+`$ tar xvf Python-$RELEASE.tar.xz`  
+`$ cd Python-$RELEASE`  
 
 Configure the install with our settings  
+(NOTE: we must run configure with the --enable-share flag in order to support theano)  
 `$ ./configure --prefix=/opt/python3.6 --enable-shared LDFLAGS="-Wl,-rpath /opt/python3.6/lib"`  
 `$ make`  
 Optional. Running "make test" takes a while to complete, but you might want to try it once.  
@@ -81,7 +81,7 @@ alias deact='deactivate'
 alias atom36='act_ml36; atom; deactivate'
 ```
 reload the .bashrc file to activate our changes  
-$ source ~/.bashrc
+`$ source ~/.bashrc`  
 
 
 ## _Section 4_ - Set up the Python Virtual Environment
