@@ -1,7 +1,7 @@
 # **Setting up your Python Machine Learning system**
 *Set up a Python 3 virtual environment on an Ubuntu system for doing Machine Learning / Deep Learning*
 
-These notes assume that the reader has installed Linux, preferably an Ubuntu variant like Ubuntu-MATE, which is the best :) If you insist on using Windows, then these notes are not for you; try installing Anaconda for example, which seems to exist mostly to help Windows users do scientific/engineering coding in Python. If you are using Linux, however, there is no need for anything like Anaconda. Python 3 provides a native way to set up a virtual environment called 'venv', and for those stuck using Python 2.7, there is a package named 'virtualenv'. Below we will build Python 3.6 on our system in the /opt directory. Then we will install a virtual environment in our home directory which links to the /opt version we installed. Then we will use pip to install any package that we need into that virtual environment. Easy-peasy and we didn't have to install extra stuff like Anaconda to do hand-holding for us.  
+These notes assume that the reader has installed Linux, preferably an Ubuntu variant like Ubuntu-MATE, which is the best :) If you insist on using Windows, then these notes are not for you; try installing Anaconda. If you are using Linux, however, there is no need for anything like Anaconda. Python 3 provides a native way to set up a virtual environment called 'venv', and for those stuck using Python 2.7, there is a package named 'virtualenv'. Below we will build Python 3.6 on our system in the /opt directory. Then we will install a virtual environment in our home directory which links to the /opt version we installed. Then we will use pip to install any package that we need into that virtual environment. Easy-peasy and we didn't have to install extra stuff like Anaconda to do hand-holding for us.  
 
 If you are unsatisfied with this virtual environment for some reason, or would like to replace it with an updated version, you can simply delete the directory and no trace will remain. You could even erase the version of Python in the /opt directory. 
 
@@ -205,13 +205,13 @@ Did you notice that earlier we put an alias in our .bashrc for Atom? We did this
 
 
 ## _Section 7_ - Numba
-Numba runs Python functions through an LLVM just-in-time (JIT) compiler, resulting in orders-of-magnitude faster code for certain operations.  
+Numba runs Python functions through an LLVM just-in-time (JIT) compiler, resulting in orders-of-magnitude faster code for certain operations. Learning how to install Numba was frustrating since I needed to first install the correct version of LLVM on my system, and then install llvmlite correctly before I could "pip install numba". I hope these steps save others the same annoyance. 
 
-First, install llvm-4.0-dev. You are using Ubuntu, right? In Synaptic, add the following apt-line of the repository you want to add as source  
+First, install llvm-4.0-dev. (You are using Ubuntu, right? You can use Synaptic to manage sources and to install packages.) Add the following apt-line of the repository you want to add as source  
 "deb http://archive.ubuntu.com/ubuntu zesty main"  
 in Synaptic, install llvm-4.0-dev, and clang-4.0  
-Now you may uncheck these apt sources in the Synaptic sources menu. The following might need to be installd (not quite sure tbh)   
-$ sudo apt install zlib1g zlib1g-dev
+Now you may uncheck these apt sources in the Synaptic sources menu. The following might need to be installed (not quite sure tbh)   
+`$ sudo apt install zlib1g zlib1g-dev`  
 
 
 Install llvmlite [A lightweight LLVM python binding for writing JIT compilers http://llvmlite.pydata.org/]  
@@ -223,7 +223,7 @@ Install llvmlite [A lightweight LLVM python binding for writing JIT compilers ht
 `$ py36 setup.py build`  
 `$ py36 setup.py install`  
 
-Install (if not already) numpy (version 1.7 or higher)  
+Install (if not already) NumPy (version 1.7 or higher)  
 
 Finally, install Numba  
 `$ act_ml36`  
