@@ -56,8 +56,8 @@ Configure the install with our settings
 `$ make`  
 Optional. Running "make test" takes a while to complete, but you might want to try it once.  
 `$ make test`  
-Careful on this next step. Do NOT "make install"; it will overwrite your existing Python used by your system  
-`$ sudo make altinstall`    
+Careful on this next step, be sure to use "altinstall". Do NOT "make install"; it will overwrite your existing Python used by your system  
+`$ sudo make altinstall`      
 
 Finished with this directory, cd back out and delete it  
 `$ cd ~`  
