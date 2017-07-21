@@ -283,8 +283,8 @@ Install NLTK Data
 `$ mkdir .ml_resources`  
 `$ mkdir .ml_resources/nltk_data`  
 Below are two examples of installing individual data modules  
-`$ py36 -m nltk.downloader 'punkt' -d /home/davros/.ml_resources/nltk_data`  
-`$ py36 -m nltk.downloader 'stopwords' -d /home/davros/.ml_resources/nltk_data`  
+`$ py36 -m nltk.downloader 'punkt' -d /home/username/.ml_resources/nltk_data`  
+`$ py36 -m nltk.downloader 'stopwords' -d /home/username/.ml_resources/nltk_data`  
 
 We could have instead installed all corpora and trained models with nltk.download('all').  See the full list of NLTK Corpora at http://www.nltk.org/nltk_data/   
 
@@ -335,7 +335,7 @@ Now you may uncheck these apt sources in the Synaptic sources menu. The followin
 Install llvmlite [A lightweight LLVM python binding for writing JIT compilers http://llvmlite.pydata.org/]  
 `$ export LLVM_CONFIG="/usr/lib/llvm-4.0/bin/llvm-config"`  
 (note, not activating our virtual environment here)  
-`$ cd /home/telemaque/.ml36/lib/python3.6/site-packages`  
+`$ cd /home/username/.ml36/lib/python3.6/site-packages`  
 `$ git clone https://github.com/numba/llvmlite`  
 `$ cd llvmlite`  
 `$ py36 setup.py build`  
@@ -366,7 +366,7 @@ PyMC3 uses Theano, which requires a BLAS library. First, then, install OpenBLAS 
 `$ git clone https://github.com/xianyi/OpenBLAS`  
 `$ cd OpenBLAS`  
 `$ make FC=gfortran`  
-`$ make PREFIX=/home/telemaque/.ml36/lib/python3.6/site-packages/OpenBLAS install`  
+`$ make PREFIX=/home/username/.ml36/lib/python3.6/site-packages/OpenBLAS install`  
 
 Now install the latest, bleeding-edge, development version of Theano with:  
 `$ pip36 install --upgrade --no-deps git+git://github.com/Theano/Theano.git`  
