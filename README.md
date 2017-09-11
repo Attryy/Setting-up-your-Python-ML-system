@@ -1,7 +1,7 @@
 # **Setting up your Python Machine Learning system**
 *Set up a Python 3 virtual environment on an Ubuntu system for doing Machine Learning / Deep Learning*
 
-These notes assume that the reader has installed Linux, preferably an Ubuntu variant like Ubuntu-MATE, which is the best :) Python 3 provides a native way to set up a virtual environment called 'venv', and for those stuck using Python 2.7, there is a package named 'virtualenv'. Below we will build Python 3.6 on our system in the /opt directory. Then we will install a virtual environment in our home directory which links to the /opt version we installed. Then we will use pip to install any package that we need into that virtual environment.
+These notes assume that the reader has installed Linux, preferably an Ubuntu variant like UbuntuMATE, which is the best :) Python 3 provides a native way to set up a virtual environment called 'venv', and for those stuck using Python 2.7, there is a package named 'virtualenv'. Below we will build Python 3.6 on our system in the /opt directory. Then we will install a virtual environment in our home directory which links to the /opt version we installed. Then we will use pip to install any package that we need into that virtual environment.
 
 If you have experience using Python for ML, science, or engineering, then you might be asking "why doesn't he just use Anaconda for everything?". Answer: "I don't wanna." I want to install the packages that I need and no more. With venv and pip most of your Linux needs are covered. You will need to build some packages on your system, but I show how to do that here.
 
