@@ -289,7 +289,7 @@ Below are two examples of installing individual data modules
 We could have instead installed all corpora and trained models with nltk.download('all').  See the full list of NLTK Corpora at http://www.nltk.org/nltk_data/   
 
 Since I opted not to let the installer put the nltk_data directory in the default location, I must set the NLTK_DATA variable, in .bashrc file, to point to the .ml_resources location. Add this line to your .bashrc  
-`export NLTK_DATA='/home/davros/.ml_resources/nltk_data'`
+`export NLTK_DATA='/home/username/.ml_resources/nltk_data'`
 
 
 ## _Section 5_ - Database
