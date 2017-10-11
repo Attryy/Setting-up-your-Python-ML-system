@@ -357,8 +357,9 @@ Change the Jupyter notebook colors if you wish (OPTIONAL). I like 'midnight'
 Then start Jupyter to check that the change took effect.  
 `$ jupyter-notebook_36`  
 
-In order to dave notebooks to PDF files, we must install nbconvert, Pandoc, and TeX.
-`sudo apt-get install nbconvert texlive texlive-latex-extra pandoc` 
+In order to dave notebooks to PDF files, we must install nbconvert, Pandoc, and TeX.  
+`sudo apt-get install nbconvert texlive texlive-latex-extra pandoc`  
+
 texlive takes a while to download before installing.  
 
 
