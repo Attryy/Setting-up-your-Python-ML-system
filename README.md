@@ -348,7 +348,7 @@ Finally, install Numba
 `$ pip36 install numba`
 
 
-#### C. Jupyter Themer
+#### C. Jupyter Themer, etc.
 We installed Jupyter above. We then installed Jupyter-themer. I prefer dark themes for when I code so I use the color 'midnignt'. Go to the Jupyter-themer page and see what you might like best.  
 
 Change the Jupyter notebook colors if you wish (OPTIONAL). I like 'midnight'  
@@ -356,6 +356,10 @@ Change the Jupyter notebook colors if you wish (OPTIONAL). I like 'midnight'
 
 Then start Jupyter to check that the change took effect.  
 `$ jupyter-notebook_36`  
+
+In order to dave notebooks to PDF files, we must install nbconvert, Pandoc, and TeX.
+`sudo apt-get install nbconvert texlive texlive-latex-extra pandoc` 
+texlive takes a while to download before installing.  
 
 
 #### D. Get Bayesian with PyMC3
