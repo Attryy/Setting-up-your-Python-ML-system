@@ -60,7 +60,7 @@ The driver download takes several minutes. After the driver is installed, verify
 
 You should see an output which lists the NVIDIA 384 driver and your NVIDIA GPU.
 
-Install a number of necassary build/dev packages:  
+Install a number of necessary build/dev packages:  
 `~$ sudo apt-get install g++ freeglut3-dev build-essential libx11-dev libxmu-dev libxi-dev libglu1-mesa libglu1-mesa-dev`  
 
 The default gcc/g++ version for Ubuntu 17.10 is 7.2.0 (Ubuntu 7.2.0-8ubuntu3). This can be checked by:  
