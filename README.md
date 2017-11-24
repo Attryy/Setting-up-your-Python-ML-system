@@ -36,11 +36,11 @@ https://askubuntu.com/questions/967332/how-can-i-install-cuda-9-on-ubuntu-17-10
 
 The install was successful and I was able to run the NVIDIA example code. It wasn't until I had set up my Python environment and installed TensorFlow that I encountered problems.  
 
-Problem 1. Tensorflow 1.4 (current version) requires CUDA 8 and cuDNN 6. A quote from a TensorFlow post: "We anticipate releasing TensorFlow 1.5 with CUDA 9 and cuDNN 7".
+**Problem 1.** Tensorflow 1.4 (current version) requires CUDA 8 and cuDNN 6. A quote from a TensorFlow post: "We anticipate releasing TensorFlow 1.5 with CUDA 9 and cuDNN 7".
 
-Problem 2. CUDA 8 requires GCC 5 instead of GCC 6 (CUDA 9 requires GCC 6; the Ubuntu 17.10 default is GCC 7).
+**Problem 2.** CUDA 8 requires GCC 5 instead of GCC 6 (CUDA 9 requires GCC 6; the Ubuntu 17.10 default is GCC 7).
 
-Problem 3. The pip binary for the latest version of TensorFlow (1.4) was built with Python 3.5 and gives import warnings.
+**Problem 3.** The pip binary for the latest version of TensorFlow (1.4) was built with Python 3.5 and gives import warnings.
 
 My solution to the above problems is this:
 On a freshly-installed Ubuntu 17.10 system, install **GCC/G++ 5**. Next install **CUDA 8** and **cudDNN 6**. Next install **the latest Python (which is version 3.6.3)**. Finally, install **TensorFlow 1.3**. When TensorFlow 1.5 is released in a few months, I will upgrade to GCC/G++ 6 and CUDA 9.  
@@ -286,7 +286,7 @@ The module requires pygame
 `~$ pip36 install pygame`  
 `~$ py36 mandelbrot.py`  
 
-You should now see a pretty thingy  
+You should now see a pretty fractal thingy.  
 
 
 ## _Section 2_ - Computer Vision (CV)
