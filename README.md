@@ -1,39 +1,125 @@
 # **Setting up your Python Machine Learning system**
 *Set up a Python 3 virtual environment on an Ubuntu system for doing Machine Learning / Deep Learning*
 
-These notes assume that the reader has installed Linux, preferably an Ubuntu variant like UbuntuMATE, which is the best :) Python 3 provides a native way to set up a virtual environment called 'venv', and for those stuck using Python 2.7, there is a package named 'virtualenv'. Below we will build Python 3.6 on our system in the /opt directory. Then we will install a virtual environment in our home directory which links to the /opt version we installed. Then we will use pip to install any package that we need into that virtual environment.
+Most of my daily work involves the processing of video sequences from different sensors (visible, infrared, polarization-filtered, etc). My preferred work environment, in fact the sole environment I work in since several years ago, is **Linux / Python / C / C++**. I began my engineering career using proprietary operating systems and programming environments since this was expected and I really didn't have a choice, but my preference for Linux to other operating systems developed early in my career when I had to administer a small network. At some point a few years ago it became clear to me that Python is the lingua-franca of the machine learning community and that, thanks to powerful packages such as SciPy, Scikit-Image, Sckit-Learn, TensorFLow, and Keras (to name but a few) all my engineering needs would be met with Python. What's more, the ability to code in C and C++ can be of great use when programming to interface with hardware using camera APIs or when creating massively parallel applications for your GPU with CUDA.  
+Note: this document was originally created to aid those beginning in machine learning. However it's focus has shifted a bit so that it would perhaps be better named **_Setting up your Open-Source-Powered system for ML, DL, video processing, scientific programing, signal processing, etc_**  
 
-If you have experience using Python for ML, science, or engineering, then you might be asking "why doesn't he just use Anaconda for everything?". Answer: "I don't wanna." I want to install the packages that I need and no more. With venv and pip most of your Linux needs are covered. You will need to build some software on your system, but I show how to do that here.
+**Linux**  
+These notes assume that the reader has or will install Ubuntu-MATE 17.10 which can be downloaded, either directly or via torrent, here:  
+http://ubuntu-mate.org/download/  
 
-If you are unsatisfied with this virtual environment for some reason, you can simply delete the directory and no trace will remain. You could even delete the version of Python in the /opt directory.
+**CUDA**  
+For readers with a CUDA-capable GPU, there is a section on downloading and installing CUDA. Check the following link to determine if your GPU is CUDA-capable:  
+https://developer.nvidia.com/cuda-gpus  
 
-Section 1 has what you will need to begin in machine learning. Part 1.A. is for those with a GPU; skip if you don't have one in your system. The remaining sections are optional in the beginning, but you will likely find yourself needing these tools at some point. The Conclusion is simply to remind you of the ways you can invoke your new virtual Python ML setup.
+
+**C and C++**  
+GCC and G++ will be installed prior to installing CUDA.    
+
+**Python 3**  
+Python 3 provides a native way to set up a virtual environment called 'venv'. Below we will build Python 3.6.3 on our system in the /opt directory. Then we will install a virtual environment in our home directory which links to the /opt version we installed. Then we will use pip to install most any package that we need into that virtual environment.
+
+If you have experience using Python for ML, science, or engineering, then you might be asking "why doesn't he just use Anaconda for everything?". Answer: "I don't wanna." I want to install the packages that I need and no more. With venv and pip most of your ML needs are covered. Where any software needs to be built on your system, I show you how.  
+
+If you are unsatisfied with this virtual environment for some reason, you can simply delete the directory and no trace will remain. You could even delete the version of Python in the /opt directory.  
+
 
 ## _Section 1_ - Most of what you will need
 
 #### A. Installing CUDA & cuDNN for your GPU  
-If you have an NVIDIA graphics card that can support CUDA 8, then you're all set. I recently bought a relatively inexpensive card, the GTX 1050 Ti. Training neural networks on this thing is considerably faster than on my CPU. When I think that for just a couple hundred $ more I could have gotten the GTX 1070....no, I will not think about that now. If you do not have a GPU in your system, then no problem, you can still do deep learning. It's true that the extremely long times required to train on some larger datasets without a GPU will limit what projects you are willing to undertake, but you will be able to learn to do deep learning nonetheless with smaller datasets. So, if you don't have a GPU, skip ahead to the next section, but if you do, then follow the instructions below: 
+If you do NOT have a GPU in your system, then no problem, you can still do deep learning. It's true that the extremely long times required to train on some larger datasets without a GPU will limit what projects you are willing to undertake, but you will be able to learn to do deep learning nonetheless with smaller datasets.  
 
-Download CUDA from:  
-https://developer.nvidia.com/cuda-downloads 
+If you DO have an NVIDIA graphics card that can support CUDA 8, then you're all set perform the setup described in this section.
 
-Install CUDA 8 per instructions at:    
-http://docs.nvidia.com/cuda/cuda-installation-guide-linux/#axzz4ZXLKBcAN  
+I installed Ubuntu-MATE 17.10 and followed the instructions for installing CUDA 9 (the latest) as described in this excellent post:  
+https://askubuntu.com/questions/967332/how-can-i-install-cuda-9-on-ubuntu-17-10  
 
-Add this to your .bashrc file:  
-`#CUDA`    
-`export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}`  
-`export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64 ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}`
+The install was successful and I was able to run the NVIDIA example code. It wasn't until I had set up my Python environment and installed TensorFlow that I encountered problems.  
 
-Restart the system.
+Problem 1. Tensorflow 1.4 (current version) requires CUDA 8 and cuDNN 6. A quote from a TensorFlow post: "We anticipate releasing TensorFlow 1.5 with CUDA 9 and cuDNN 7".
 
-Download cudnn from:  
+Problem 2. CUDA 8 requires GCC 5 instead of GCC 6 (CUDA 9 requires GCC 6; the Ubuntu 17.10 default is GCC 7).
+
+Problem 3. The pip binary for the latest version of TensorFlow (1.4) was built with Python 3.5 and gives import warnings.
+
+My solution to the above problems is this:
+On a freshly-installed Ubuntu 17.10 system, install **GCC/G++ 5**. Next install **CUDA 8** and **cudDNN 6**. Next install **the latest Python (which is version 3.6.3)**. Finally, install **TensorFlow 1.3**. When TensorFlow 1.5 is released in a few months, I will upgrade to GCC/G++ 6 and CUDA 9.  
+
+The instructions are as follows:  
+
+`~$ sudo add-apt-repository ppa:graphics-drivers/ppa`  
+`~$ sudo apt update`    
+
+Then install the most recent NVIDIA driver using apt:
+
+`~$ sudo apt install nvidia-384 nvidia-384-dev`  
+
+The driver download takes several minutes. After the driver is installed, verify the installation by running:
+
+`~$ nvidia-smi`  
+
+You should see an output which lists the NVIDIA 384 driver and your NVIDIA GPU.
+
+Install a number of necassary build/dev packages:  
+`~$ sudo apt-get install g++ freeglut3-dev build-essential libx11-dev libxmu-dev libxi-dev libglu1-mesa libglu1-mesa-dev`  
+
+The default gcc/g++ version for Ubuntu 17.10 is 7.2.0 (Ubuntu 7.2.0-8ubuntu3). This can be checked by:  
+`~$ gcc -v`  
+
+CUDA 8 requires gcc 5. ("gcc versions later than 5 are not supported!")  
+Install it (and set the corresponding sym-links after the cuda installation):  
+`~$ sudo apt install gcc-5`  
+`~$ sudo apt install g++-5`  
+
+download and install CUDA Toolkit 8 and cudnn 6 for use with TensorFlow 1.3  
+
+download the latest version 8 CUDA Toolkit (Debian package)  
+`~$ wget https://developer.nvidia.com/compute/cuda/8.0/Prod2/local_installers/cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64-deb`  
+
+Install the .deb package.  
+`~$ sudo dpkg -i cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64-deb`  
+
+download the latest update:  
+`~$ wget https://developer.nvidia.com/compute/cuda/8.0/Prod2/patches/2/cuda-repo-ubuntu1604-8-0-local-cublas-performance-update_8.0.61-1_amd64-deb`  
+
+Install the .deb package   
+`~$ sudo dpkg -i cuda-repo-ubuntu1604-8-0-local-cublas-performance-update_8.0.61-1_amd64-deb`  
+
+`$ sudo apt-get update`  
+`$ sudo apt-get install cuda`  
+
+Make those sym-links mentioned earlier:  
+`~$ sudo ln -s /usr/bin/gcc-5 /usr/local/cuda/bin/gcc`  
+`~$ sudo ln -s /usr/bin/g++-5 /usr/local/cuda/bin/g++`  
+
+Install the samples using the convenience installation script:  
+`~$ cd /usr/local/cuda/bin`  
+`~$ bash cuda-install-samples-8.0.sh ~/`  
+
+Test one of the samples:  
+`~$ cd ~/NVIDIA_CUDA-8.0_Samples/5_Simulations/smokeParticles`  
+`~$ make`  
+`~$ ./smokeParticles`  
+
+You'll see a pretty smoke thingy.  
+
+Download cuDNN 6 from  
 https://developer.nvidia.com/rdp/cudnn-download  
+(requires login)  
 
-Uncompress and copy the cudnn files to appropriate directories in /usr/local/cuda-8.0/  
+Uncompress and copy to the appropriate dirs (include & lib64) in /usr/local/cuda  
 
 
-#### B. Download and Build Python 3.6.1 on Your System  
+Add the following to your .bashrc  
+
+```
+# The PATH variable needs to include /usr/local/cuda-8.0/bin
+export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}
+# In addition, the LD_LIBRARY_PATH variable needs to be set
+export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+```  
+
+#### B. Download and Build Python 3.6.3 on Your System  
 
 Before installing Python, install the following dependencies (some of these may be installed already, in which case apt-get will inform you).
 
@@ -48,7 +134,9 @@ Make a directory in /opt to build our new Python
 `$ sudo mkdir /opt/python3.6`  
 `$ sudo mkdir /opt/python3.6/lib`  
 
-Download and uncompress Python  
+Download Python from:
+https://www.python.org/downloads/  
+Uncompress and cd into the directory  
 `$ tar xvf Python-$RELEASE.tar.xz`  
 `$ cd Python-$RELEASE`  
 
@@ -63,14 +151,14 @@ Careful on this next step, be sure to use "altinstall". Do NOT "make install"; i
 
 Finished with this directory, cd back out and delete it  
 `$ cd ~`  
-`$ sudo rm -rf Python3.6.1`  
+`$ sudo rm -rf Python3.6.3`  
 
 
 #### C. Adding some aliases to .bashrc  
 
-Add the block below to your .bashrc file. Replace '/home/username' in the block below with the path to your home directory. Note that I call my Python "py36". I also have Python 3.4 installed, which I invoke with "py34", to be clear which version I am using. If you will only use the one version, then you could simple call it "py3" for example.  
+Add the block below to your .bashrc file. Replace '/home/username' in the block below with the path to your home directory. Note that I call my Python "py36". I also have Python 3.4 installed, which I invoke with "py34", to be clear which version I am using. If you will only use the one version, then you could simply call it "py3" for example.  
 ```
-# PYTHON 3.6.1  
+# PYTHON 3.6.3  
 alias py36='/home/username/.ml36/bin/python3.6' # to use this Python
 alias pip36='/home/username/.ml36/bin/pip3.6' # to install packages within our venv
 alias jupyter-notebook_36='/home/username/.ml36/bin/jupyter-notebook' # Jupyter Notebook
@@ -100,15 +188,15 @@ Check for yourself that the new directory is there.
 
 Was the new .ml36 directory listed?
 
-Now let's use the first alias we created _py36_. Running this command starts our new Python 3.6.1 interpreter. This Python is used by our virtual environment. If you check in your .ml36 directory you will find a symbolic link to /opt/python3.6/bin/python3.6  
+Now let's use the first alias we created _py36_. Running this command starts our new Python 3.6.3 interpreter. This Python is used by our virtual environment. If you check in your .ml36 directory you will find a symbolic link to /opt/python3.6/bin/python3.6  
 
 Run the py36 command and note the date and version number.  
 
 `$ py36`  
-Python 3.6.1 (default, Mar 28 2017, 22:45:00)  
-[GCC 5.4.0 20160609] on linux  
-Type "help", "copyright", "credits" or "license" for more information.  
-\>>>   
+Python 3.6.3 (default, Nov 22 2017, 23:23:32)
+[GCC 7.2.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+\>>>  
 
 now do this in the interpreter:
 
@@ -138,7 +226,7 @@ Namespaces are one honking great idea -- let's do more of those!
 
 It works! Type Ctrl-D to exit the interpreter and go back to the shell.
 
- 
+
 #### E. Installing modules we need for machine learning  
 
 Use one of the aliases you created in your .bashrc file to activate the virtual environment.  
@@ -148,23 +236,17 @@ Do you see that now each command line begins with (.ml36)? Now the virtual envir
 
 Install some necessary / useful packages  
 `$ pip36 install numpy scipy`  
-`$ pip36 install scikit-learn`  
-`$ pip36 install pillow`  
-`$ pip36 install h5py`  
-`$ pip36 install cython`  
-`$ pip36 install numpydoc`  
-`$ pip36 install scikit-image`  
-`$ pip36 install nose`  
-`$ pip36 install pandas`  
-`$ pip36 install seaborn`  
+`$ pip36 install scikit-image`
+`$ pip36 install scikit-learn`    
+`$ pip36 install h5py`        
 `$ pip36 install jupyter`  
 `$ pip36 install jupyter-themer`    
 
 Install TensorFlow  
-If you don't have a GPU:    
-`$ pip36 install --upgrade tensorflow`  
-If you have a GPU:    
-`$ pip36 install --upgrade tensorflow-gpu`  
+If you do NOT have a GPU:    
+`$ pip36 install tensorflow`  
+If you DO have a GPU and have followed the steps in section 1. A.,:      
+`$ pip36 install tensorflow-gpu==1.3.0`  
 
 Install Keras  
 `pip36 install keras`  
@@ -182,20 +264,34 @@ Is the tensorflow backend used?
 Ctrl+D to exit.   
 
 
-## _Section 2_ - Recommended   
+#### F. Python + CUDA  
 
-#### A. Atom
-In case you don't already know, Atom is a hackable text editor. When I say hackable, I mean that you can configure just about anything you want configured. It can be used to code almost any language you can think of. I'm using it now to create this markdown document.  
+Installing Numba for Python + CUDA programming
 
-Download the .deb from https://atom.io/  
-You can simply right-click to install it.  
-Did you notice that earlier we put an alias in our .bashrc for Atom? We did this so that Atom would open using our new version of Python instead of the one installed by default on our system.  
-` $ atom36`  
+Numba requires llvm  
+`~$ sudo apt-get install llvm-5.0 llvm-5.0-dev`  
+
+Install Numba  
+`~$ pip36 install numba`  
+
+The Python 3.6 header is needed to build using the makefile below  
+`~$ sudo apt-get install python3.6-dev`  
+
+To test Python, C, and CUDA, try the Mandelbrot set visualization below:  
+`~$ git clone https://github.com/tterava/Mandelbrot`  
+`~$ cd Mandelbrot`  
+Change the PYTHONPATH value in Makefile to that of version 3.6.  
+`~$ make`  
+The module requires pygame  
+`~$ pip36 install pygame`  
+`~$ py36 mandelbrot.py`  
+
+You should now see a pretty thingy  
 
 
-## _Section 3_ - Computer Vision (CV)
+## _Section 2_ - Computer Vision (CV)
 
-#### A. Install OpenCV 
+#### A. Install OpenCV
 Many of my Computer Vision needs are met by SciKit-Image, but I often use OpenCV 3  
 
 Install these dependencies first  
@@ -230,9 +326,9 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D PYTHON_NUMPY_INCLUDE_DIR=/home/username/.ml36/lib/python3.6/site-packages/numpy/core/include/numpy \
       -D BUILD_EXAMPLES=ON ..
 ```  
-         
+
 `$ make -j4`  
-If any errors encountered, try make with only one core:  "make clean", then "make"  
+If any errors encountered, try make with only one core:  "make clean", then "make" (which is equivalent to "make -j1")    
 
 `$ make install`    
 `$ sudo ldconfig`    
@@ -242,7 +338,7 @@ Make symlink to OpenCV in new Python site-packages directory
 `$ ln -s /home/username/.ml36/lib/python3.6/site-packages/opencv/lib/python3.6/site-packages/cv2.cpython-36m-x86_64-linux-gnu.so cv2.so`  
 
 `$ deact`  
-  
+
 
 #### B. dlib  
 
@@ -270,85 +366,19 @@ Finally, install dlib.
 `pip36 install dlib`  
 
 
-## _Section 4_ - Natural Language Processing (NLP)
+## _Section 3_ - Other  
 
-#### NLTK
+#### A. Atom
+In case you don't already know, Atom is a hackable text editor. When I say hackable, I mean that you can configure just about anything you want configured. It can be used to code almost any language you can think of. I use it to program in Python, C and C++. I use it for makefiles. I'm using it now to create this markdown document.
 
-To do NLP with Python, install NLTK (http://www.nltk.org/index.html)  
-`$ act_ml36`  
-`$ pip36 install -U nltk`  
-`$ deact`  
+Download the .deb from https://atom.io/  
+You can simply right-click to install it.  
+Did you notice that earlier we put an alias in our .bashrc for Atom? We did this so that Atom would open using our new version of Python instead of the one installed by default on our system.  
+` $ atom36`  
 
-Install NLTK Data  
-`$ mkdir .ml_resources`  
-`$ mkdir .ml_resources/nltk_data`  
-Below are two examples of installing individual data modules  
-`$ py36 -m nltk.downloader 'punkt' -d /home/username/.ml_resources/nltk_data`  
-`$ py36 -m nltk.downloader 'stopwords' -d /home/username/.ml_resources/nltk_data`  
+Note: I'm not saying that Atom is better than your editor-of-choice, merely that I prefer it to others I have used.
 
-We could have instead installed all corpora and trained models with nltk.download('all').  See the full list of NLTK Corpora at http://www.nltk.org/nltk_data/   
-
-Since I opted not to let the installer put the nltk_data directory in the default location, I must set the NLTK_DATA variable, in .bashrc file, to point to the .ml_resources location. Add this line to your .bashrc  
-`export NLTK_DATA='/home/username/.ml_resources/nltk_data'`
-
-
-## _Section 5_ - Database
-
-#### MongoDB and PyMongo  
-
-MongoDB is a NoSQL database which has become quite popular. The PyMongo distribution contains tools for interacting with MongoDB database from Python.  
-
-First, install MongoDB by following the few steps listed here:  
-https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/  
-
-
-Now install PyMongo  
-`$ act_ml36`  
-`$ py36 -m pip install pymongo`  
-`$ deact`  
-
-
-## _Section 6_ - Other
-
-#### A. XGBoost
-XGBoost is a gradient boosting library. Chances are that if you stick with ML for a while, you will find yourself wanting it. Install it this way:  
-
-`$ git clone --recursive https://github.com/dmlc/xgboost`  
-`$ cd xgboost`  
-`$ make`  
-`$ cd python-package`  
-`$ act_ml36`  
-`$ py36 setup.py install`  
-`$ deact`  
-
-
-#### B. Numba
-Numba runs Python functions through an LLVM just-in-time (JIT) compiler, resulting in orders-of-magnitude faster code for certain operations. Learning how to install Numba was frustrating since I needed to first install the correct version of LLVM on my system, and then install llvmlite correctly before I could "pip install numba". I hope these steps save others the same annoyance. 
-
-First, install llvm-4.0-dev. (You are using Ubuntu, right? You can use Synaptic to manage sources and to install packages.) Add the following apt-line of the repository you want to add as source  
-"deb http://archive.ubuntu.com/ubuntu zesty main"  
-in Synaptic, install llvm-4.0-dev, and clang-4.0  
-Now you may uncheck these apt sources in the Synaptic sources menu. The following might need to be installed (not quite sure tbh)   
-`$ sudo apt install zlib1g zlib1g-dev`  
-
-
-Install llvmlite [A lightweight LLVM python binding for writing JIT compilers http://llvmlite.pydata.org/]  
-`$ export LLVM_CONFIG="/usr/lib/llvm-4.0/bin/llvm-config"`  
-(note, not activating our virtual environment here)  
-`$ cd /home/username/.ml36/lib/python3.6/site-packages`  
-`$ git clone https://github.com/numba/llvmlite`  
-`$ cd llvmlite`  
-`$ py36 setup.py build`  
-`$ py36 setup.py install`  
-
-Install (if not already) NumPy (version 1.7 or higher)  
-
-Finally, install Numba  
-`$ act_ml36`  
-`$ pip36 install numba`
-
-
-#### C. Jupyter Themer
+#### B. Jupyter Themer
 We installed Jupyter above. We then installed Jupyter-themer. I prefer dark themes for when I code so I use the color 'midnignt'. Go to the Jupyter-themer page and see what you might like best.  
 
 Change the Jupyter notebook colors if you wish (OPTIONAL). I like 'midnight'  
@@ -358,26 +388,10 @@ Then start Jupyter to check that the change took effect.
 `$ jupyter-notebook_36`  
 
 
-#### D. Get Bayesian with PyMC3
-PyMC3 is a Python library for probabilistic programming. I'm working through Osvaldo Martin's book *Bayesian Analysis with Python* and am really beginning to respect the power of this Bayesian framework. Thomas Wiecki, Lead Data Scientist at Quantopian Inc., and one of the authors of PyMC3, has a blog wherein he has shown the feasibility and indeed the utility of "Bayesian Deep Learning"; it can be found here: http://twiecki.github.io.
-
-PyMC3 uses Theano, which requires a BLAS library. First, then, install OpenBLAS like so:  
-`$ cd ~/`  
-`$ git clone https://github.com/xianyi/OpenBLAS`  
-`$ cd OpenBLAS`  
-`$ make FC=gfortran`  
-`$ make PREFIX=/home/username/.ml36/lib/python3.6/site-packages/OpenBLAS install`  
-
-Now install the latest, bleeding-edge, development version of Theano with:  
-`$ pip36 install --upgrade --no-deps git+git://github.com/Theano/Theano.git`  
-
-Finally, install the development version of PyMC3:  
-`$ pip36 install git+https://github.com/pymc-devs/pymc3`    
-
 
 ## _CONCLUSION_  
 
-We can now use three of our BASH aliases to use our new Python 3.6.1.
+We can now use three of our BASH aliases to use our new Python 3.6.3.
 
 To run the Python interpreter in the terminal window, just type:  
 `$ py36`
@@ -388,5 +402,5 @@ To run a Jupyter notebook powered by our new Python 3.6 installation, just type:
 To code in Atom with the ability to execute the code (with Ctrl+Shift+B) with our new version of Python instead of the default version on our system, just type:  
 `$ atom36`  
 
-  
+
 If you find any error or have any questions, please open an issue and I will respond.
