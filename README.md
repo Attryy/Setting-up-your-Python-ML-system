@@ -2,7 +2,7 @@
 *Set up a Python 3 virtual environment on an Ubuntu system for doing Machine Learning / Deep Learning*
 
 Most of my daily work involves the processing of video sequences from different sensors (visible, infrared, polarization-filtered, etc). My preferred work environment, in fact the sole environment I work in since several years ago, is **Linux / Python / C / C++**. I began my engineering career using proprietary operating systems and programming environments since this was expected and I really didn't have a choice, but my preference for Linux to other operating systems developed early in my career when I had to administer a small network. At some point a few years ago it became clear to me that Python is the lingua-franca of the machine learning community and that, thanks to powerful packages such as SciPy, Scikit-Image, Sckit-Learn, TensorFLow, and Keras (to name but a few) all my engineering needs would be met with Python. What's more, the ability to code in C and C++ can be of great use when programming to interface with hardware using camera APIs or when creating massively parallel applications for your GPU with CUDA.  
-Note: this document was originally created to aid those beginning in machine learning. However it's focus has shifted a bit so that it would perhaps be better named **_Setting up your Open-Source-Powered system for ML, DL, video processing, scientific programing, signal processing, etc_**  
+Note: this document was originally created to aid those beginning in machine learning. However its focus has shifted a bit so that it would perhaps be better named **_Setting up your Open-Source-Powered system for ML, DL, video processing, scientific programing, signal processing, etc_**  
 
 **Linux**  
 These notes assume that the reader has or will install Ubuntu-MATE 17.10 which can be downloaded, either directly or via torrent, here:  
@@ -373,10 +373,10 @@ In case you don't already know, Atom is a hackable text editor. When I say hacka
 
 Download the .deb from https://atom.io/  
 You can simply right-click to install it.  
-Did you notice that earlier we put an alias in our .bashrc for Atom? We did this so that Atom would open using our new version of Python instead of the one installed by default on our system.  
+Did you notice that earlier we put an alias in our .bashrc for Atom? We did this so that Atom would be aware our new version of Python instead of the one installed by default on our system.  
 ` $ atom36`  
 
-Note: I'm not saying that Atom is better than your editor-of-choice, merely that I prefer it to others I have used.
+Note: I'm not saying that Atom is better than your editor-of-choice, merely that I prefer it to others I have used. Learning Atom's keyboard shortcuts for the most common editing tasks will make you noticeably more productive.  
 
 #### B. Jupyter Themer
 We installed Jupyter above. We then installed Jupyter-themer. I prefer dark themes for when I code so I use the color 'midnignt'. Go to the Jupyter-themer page and see what you might like best.  
