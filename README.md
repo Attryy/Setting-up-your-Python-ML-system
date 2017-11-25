@@ -47,6 +47,7 @@ On a freshly-installed Ubuntu 17.10 system, install **GCC/G++ 5**. Next install 
 
 The instructions are as follows:  
 
+Add the graphics drivers repository:    
 `~$ sudo add-apt-repository ppa:graphics-drivers/ppa`  
 `~$ sudo apt update`    
 
