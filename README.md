@@ -284,7 +284,7 @@ export NUMBAPRO_LIBDEVICE=/usr/local/cuda-8.0/nvvm/libdevice/
 The Python 3.6 header is needed to build using the makefile below  
 `~$ sudo apt-get install python3.6-dev`  
 
-###### Compile a Python extension with nvcc  
+##### Compile a Python extension with nvcc  
 To test Python, C, and CUDA, try the Mandelbrot set visualization below:  
 `~$ git clone https://github.com/tterava/Mandelbrot`  
 `~$ cd Mandelbrot`  
@@ -296,7 +296,7 @@ The module requires pygame
 
 You should now see a pretty fractal thingy.
 
-###### Numba  
+##### Numba  
 To test a simple Numba /@jit CUDA kernel, try this example from  
 https://nyu-cds.github.io/python-numba/05-cuda/  
 
@@ -340,7 +340,7 @@ You should see the following output:
 
 ```  
 
-###### pyculib  
+##### pyculib  
 install pyculib to to combine standard operations, like an FFT, with a custom CUDA kernel written with Numba, as in this example:    
 https://devblogs.nvidia.com/parallelforall/seven-things-numba/  
 
