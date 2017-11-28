@@ -5,7 +5,7 @@ Most of my daily work involves the processing of video sequences from different 
 Note: this document was originally created to aid those beginning in machine learning. However its focus has shifted a bit so that it would perhaps be better named **_Setting up your Open-Source-Powered system for ML, DL, video processing, scientific programing, signal processing, etc_**  
 
 **Linux**  
-These notes assume that the reader has or will install Ubuntu-MATE 17.10 which can be downloaded, either directly or via torrent, here:  
+These notes assume that the reader has or will install Ubuntu 17.10. My favorite variant, for both home and professional use, is Ubuntu-MATE which can be downloaded, either directly or via torrent, here:  
 http://ubuntu-mate.org/download/  
 
 **CUDA**  
@@ -267,7 +267,7 @@ Ctrl+D to exit.
 
 #### F. Python + CUDA  
 
-Installing Numba for Python + CUDA programming
+Installing Numba for Python + CUDA programming (IF you have a GPU and installed CUDA)  
 
 Numba requires llvm  
 `~$ sudo apt-get install llvm-5.0 llvm-5.0-dev`  
@@ -275,9 +275,16 @@ Numba requires llvm
 Install Numba  
 `~$ pip36 install numba`  
 
+Set path variables for Numba by adding these two lines to your .bashrc:  
+```  
+export NUMBAPRO_NVVM=/usr/local/cuda-8.0/nvvm/lib64/libnvvm.so
+export NUMBAPRO_LIBDEVICE=/usr/local/cuda-8.0/nvvm/libdevice/
+```  
+
 The Python 3.6 header is needed to build using the makefile below  
 `~$ sudo apt-get install python3.6-dev`  
 
+###### Compile a Python extension with nvcc  
 To test Python, C, and CUDA, try the Mandelbrot set visualization below:  
 `~$ git clone https://github.com/tterava/Mandelbrot`  
 `~$ cd Mandelbrot`  
@@ -287,7 +294,78 @@ The module requires pygame
 `~$ pip36 install pygame`  
 `~$ py36 mandelbrot.py`  
 
-You should now see a pretty fractal thingy.  
+You should now see a pretty fractal thingy.
+
+###### Numba  
+To test a simple Numba /@jit CUDA kernel, try this example from  
+https://nyu-cds.github.io/python-numba/05-cuda/  
+
+```  
+from numba import cuda
+import numpy
+import math
+
+# CUDA kernel
+@cuda.jit
+def my_kernel(io_array):
+    pos = cuda.grid(1)
+    if pos < io_array.size:
+        io_array[pos] *= 2 # do the computation
+
+# Host code   
+data = numpy.ones(256)
+threadsperblock = 256
+blockspergrid = math.ceil(data.shape[0] / threadsperblock)
+my_kernel[blockspergrid, threadsperblock](data)
+print(data)
+```  
+
+You should see the following output:  
+```  
+[ 2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.
+  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.
+  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.
+  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.
+  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.
+  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.
+  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.
+  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.
+  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.
+  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.
+  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.
+  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.
+  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.
+  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.  2.
+  2.  2.  2.  2.]
+
+```  
+
+###### pyculib  
+install pyculib to to combine standard operations, like an FFT, with a custom CUDA kernel written with Numba, as in this example:    
+https://devblogs.nvidia.com/parallelforall/seven-things-numba/  
+
+`~$ pip36 install pyculib`  
+
+```  
+import pyculib.fft
+import numba.cuda
+import numpy as np
+
+@numba.cuda.jit
+def apply_mask(frame, mask):
+    i, j = numba.cuda.grid(2)
+    frame[i, j] *= mask[i, j]
+
+# … skipping some array setup here: frame is a 720x1280 numpy array
+
+out = np.empty_like(mask, dtype=np.complex64)
+gpu_temp = numba.cuda.to_device(out)  # make GPU array
+gpu_mask = numba.cuda.to_device(mask)  # make GPU array
+
+pyculib.fft.fft(frame.astype(np.complex64), gpu_temp)  # implied host->device
+apply_mask[blocks, tpb](gpu_temp, gpu_mask)  # all on device
+pyculib.fft.ifft(gpu_temp, out)  # implied device->host
+```  
 
 
 ## _Section 2_ - Computer Vision (CV)
