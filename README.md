@@ -340,33 +340,6 @@ You should see the following output:
 
 ```  
 
-##### pyculib  
-install pyculib to to combine standard operations, like an FFT, with a custom CUDA kernel written with Numba, as in this example:    
-https://devblogs.nvidia.com/parallelforall/seven-things-numba/  
-
-`~$ pip36 install pyculib`  
-
-```  
-import pyculib.fft
-import numba.cuda
-import numpy as np
-
-@numba.cuda.jit
-def apply_mask(frame, mask):
-    i, j = numba.cuda.grid(2)
-    frame[i, j] *= mask[i, j]
-
-# … skipping some array setup here: frame is a 720x1280 numpy array
-
-out = np.empty_like(mask, dtype=np.complex64)
-gpu_temp = numba.cuda.to_device(out)  # make GPU array
-gpu_mask = numba.cuda.to_device(mask)  # make GPU array
-
-pyculib.fft.fft(frame.astype(np.complex64), gpu_temp)  # implied host->device
-apply_mask[blocks, tpb](gpu_temp, gpu_mask)  # all on device
-pyculib.fft.ifft(gpu_temp, out)  # implied device->host
-```  
-
 
 ## _Section 2_ - Computer Vision (CV)
 
