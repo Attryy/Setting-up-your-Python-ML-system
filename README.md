@@ -346,11 +346,12 @@ You should see the following output:
 #### A. Install OpenCV
 Many of my Computer Vision needs are met by SciKit-Image, but I often use OpenCV 3  
 
-Install these dependencies first  
-`$ sudo apt-get install build-essential cmake pkg-config`  
-`$ sudo apt-get install libtiff-dev libjasper-dev libdc1394-22-dev libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libjpeg-dev libpng-dev`  
-`$ sudo apt-get install libatlas-base-dev gfortran`  
-`$ sudo apt-get install liblapacke-dev checkinstall`  
+Install these dependencies first. See what is required and what is optional here:  
+https://docs.opencv.org/master/d7/d9f/tutorial_linux_install.html  
+
+`$ sudo apt-get install build-essential`  
+`$ sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev`
+`sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev`   
 `$ sudo apt-get install python3.6-dev`  
 
 Get OpenCV from the Git Repository  
@@ -364,25 +365,50 @@ Get OpenCV from the Git Repository
 `$ mkdir build`  
 `$ cd build`  
 `$ act_ml36`  
+
+We are going to use cmake, but need to use GCC 5 that we installed above, instead of the default GCC 7.  
+Enter this at the command line:  
+`~$ export CC=/usr/bin/gcc-5`  
+`~$ export CXX=/usr/bin/g++-5`  
+
+Using this version of g++ (5.4.1 20171010 (Ubuntu 5.5.0-1ubuntu1)) will throw an error if we do not make one small change to the config file. Thanks to this post for the fix:  
+https://github.com/opencv/opencv/issues/10032  
+`~$ cd /usr/include/x86_64-linux-gnu/c++/5/bits`  
+Make a backup copy of the config file  
+`~$ sudo cp c++config.h c++config.h.bak`  
+Edit the file:  
+`~$ sudo gedit c++config.h &`  
+In the section beginning on line 1344    
+```
+/* Define if C99 functions or macros in <math.h> should be imported in <cmath>
+   in namespace std. */
+/* #undef _GLIBCXX_USE_C99_MATH */
+```  
+add the following line:  
+`#define _GLIBCXX_USE_C99_MATH 1`  
+Save this edit.  
+
 Since the following cmake command spans so many lines, copy and paste it into a text editor. Replace 'username' with your username. Then copy and paste that at the BASH prompt.  
 ```
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
-      -D CMAKE_INSTALL_PREFIX=/home/username/.ml36/lib/python3.6/site-packages/opencv \
-      -D INSTALL_PYTHON_EXAMPLES=ON \
-      -D INSTALL_C_EXAMPLES=OFF \
-      -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib-3.2.0/modules \
-      -D PYTHON_EXECUTABLE=/opt/python3.6/bin/python3.6 \
-      -D PYTHON_INCLUDE=/opt/python3.6/include/python3.6m \
-      -D PYTHON_LIBRARY=/opt/python3.6/lib/libpython3.6.so \
-      -D PYTHON_PACKAGES_PATH=/home/username/.ml36/lib/python3.6/site-packages \
-      -D PYTHON_NUMPY_INCLUDE_DIR=/home/username/.ml36/lib/python3.6/site-packages/numpy/core/include/numpy \
-      -D BUILD_EXAMPLES=ON ..
+-D CMAKE_INSTALL_PREFIX=/home/username/.ml36/lib/python3.6/site-packages/opencv \
+-D OPENCV_EXTRA_MODULES_PATH=/home/username/opencv_contrib-3.3.0/modules \
+-D PYTHON_EXECUTABLE=/opt/python3.6/bin/python3.6 \
+-D PYTHON_INCLUDE=/opt/python3.6/include/python3.6m \
+-D PYTHON_LIBRARY=/opt/python3.6/lib/libpython3.6.so \
+-D PYTHON_PACKAGES_PATH=/home/username/.ml36/lib/python3.6/site-packages \
+-D PYTHON_NUMPY_INCLUDE_DIR=/home/username/.ml36/lib/python3.6/site-packages/numpy/core/include/numpy \
+-D WITH_CUDA=OFF \
+-D BUILD_EXAMPLES=ON ..
 ```  
 
-`$ make -j4`  
-If any errors encountered, try make with only one core:  "make clean", then "make" (which is equivalent to "make -j1")    
+Find out number of CPU cores in your machine  
+`~$ nproc`  
+You can run make with multiple cores with the -j flag. I'll use all but one of mine:   
+`~$ make -j7`  
+This will take a while...  study Japanese... maybe clean the attic...     
 
-`$ make install`    
+`$ make install`   
 `$ sudo ldconfig`    
 
 Make symlink to OpenCV in new Python site-packages directory  
