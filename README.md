@@ -366,7 +366,9 @@ Get OpenCV from the Git Repository
 `$ cd build`  
 `$ act_ml36`  
 
-We are going to use cmake, but need to use GCC 5 that we installed above, instead of the default GCC 7.  
+We are going to use cmake, but need to use GCC 5 that we installed above, instead of the default GCC 7. Thanks to this post for the fix and the reason it's prefered:  
+https://stackoverflow.com/questions/17275348/how-to-specify-new-gcc-path-for-cmake  
+
 Enter this at the command line:  
 `~$ export CC=/usr/bin/gcc-5`  
 `~$ export CXX=/usr/bin/g++-5`  
