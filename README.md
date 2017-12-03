@@ -420,7 +420,60 @@ Make symlink to OpenCV in new Python site-packages directory
 `$ deact`  
 
 
-#### B. dlib  
+#### B. Invoking this OpenCV from C++ code  
+
+Many examples using CUDA to parallelize image-processing code is written in C++ and uses OpenCV functions. These examples assume that OpenCV is installed to the default directory under /usr/local, however we have installed ours under our virtual Python directory .ml36.   
+At this point you might be asking yourself, "why didn't he just install OpenCV to the default directory and then put a symlink in the appropriate virtual Python lib directory?". This might be the best way to do it...the truth is that in the past I have never used OpenCV except with Python and saw no reason for a system-wide install. Now that I am using OpenCV with C++ and NVCC, I will consider changing to a system-wide install of OpenCV. For now though, let's carry on.   
+
+Below are two things to do to ensure that our C++ code will work with OpenCV.  
+
+At compile time, the linker **ld** needs to know where to find the shared library paths. We can set these manually in /etc/ld.so.conf.d  
+`~$ cd /etc/ld.so.conf.d`  
+`~$ sudo touch opencv.conf`  
+Add the following line to the file:  
+/home/username/.ml36/lib/python3.6/site-packages/opencv/lib  
+Save the file, then apply the change with  
+`~$ sudo ldconfig`  
+
+The next place we might need to specify paths to opencv is in our makefiles. Here is a Makefile from the first homework of Udacity's Intro To Parallel Programming, with explicit paths to our libraries and our header files:
+
+```  
+NVCC=nvcc
+
+OPENCV_LIBPATH=/home/telemaque/.ml36/lib/python3.6/site-packages/opencv/lib
+OPENCV_INCLUDEPATH=/home/telemaque/.ml36/lib/python3.6/site-packages/opencv/include
+
+OPENCV_LIBS=-lopencv_core -lopencv_imgproc -lopencv_highgui -lopencv_imgcodecs
+
+CUDA_INCLUDEPATH=/usr/local/cuda-8.0/include
+
+NVCC_OPTS=-O3 -arch=sm_61 -Xcompiler -Wall -Xcompiler -Wextra -m64
+
+GCC_OPTS=-O3 -Wall -Wextra -m64
+
+student: main.o student_func.o compare.o reference_calc.o Makefile
+	$(NVCC) -o HW1 main.o student_func.o compare.o reference_calc.o -L $(OPENCV_LIBPATH) $(OPENCV_LIBS) $(NVCC_OPTS)
+
+main.o: main.cpp timer.h utils.h reference_calc.cpp compare.cpp HW1.cpp
+	g++ -c main.cpp $(GCC_OPTS) -I $(CUDA_INCLUDEPATH) -I $(OPENCV_INCLUDEPATH)
+
+student_func.o: student_func.cu utils.h
+	nvcc -c student_func.cu $(NVCC_OPTS)
+
+compare.o: compare.cpp compare.h
+	g++ -c compare.cpp -I $(OPENCV_INCLUDEPATH) $(GCC_OPTS) -I $(CUDA_INCLUDEPATH)
+
+reference_calc.o: reference_calc.cpp reference_calc.h
+	g++ -c reference_calc.cpp -I $(OPENCV_INCLUDEPATH) $(GCC_OPTS) -I $(CUDA_INCLUDEPATH)
+
+clean:
+	rm -f *.o *.png
+```  
+
+(note: My NVIDIA card is of the Pascal architecture type, so I have set arch=sm_61 under the NVCC options)  
+
+
+#### C. dlib  
 
 Developed by Davis King, the dlib C++ library is a cross-platform package for threading, networking, numerical operations, machine learning, computer vision, and compression, placing a strong emphasis on extremely high-quality and portable code.   
 
