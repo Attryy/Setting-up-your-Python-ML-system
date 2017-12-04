@@ -356,12 +356,12 @@ https://docs.opencv.org/master/d7/d9f/tutorial_linux_install.html
 
 Get OpenCV from the Git Repository  
 `$ cd ~`  
-`$ wget -O opencv.zip https://github.com/Itseez/opencv/archive/3.2.0.zip`  
+`$ wget -O opencv.zip https://github.com/Itseez/opencv/archive/3.3.0.zip`  
 `$ unzip opencv.zip`  
-`$ wget -O opencv_contrib.zip https://github.com/Itseez/opencv_contrib/archive/3.2.0.zip`  
+`$ wget -O opencv_contrib.zip https://github.com/Itseez/opencv_contrib/archive/3.3.0.zip`  
 `$ unzip opencv_contrib.zip`  
 
-`$ cd opencv-3.2.0`  
+`$ cd opencv-3.3.0`  
 `$ mkdir build`  
 `$ cd build`  
 `$ act_ml36`  
@@ -391,7 +391,7 @@ add the following line:
 Save this edit.  
 
 Return to the OpenCV build directory  
-`~$ cd ~/cd ~/opencv-3.2.0/build/`  
+`~$ cd ~/cd ~/opencv-3.3.0/build/`  
 
 Since the following cmake command spans so many lines, copy and paste it into a text editor. Replace 'username' with your username. Then copy and paste that at the BASH prompt.  
 ```
