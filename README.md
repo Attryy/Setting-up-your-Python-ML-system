@@ -80,14 +80,14 @@ download the latest version 8 CUDA Toolkit (Debian package)
 Install the .deb package.  
 `~$ sudo dpkg -i cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64-deb`  
 
+`$ sudo apt-get update`  
+`$ sudo apt-get install cuda`  
+
 download the latest update:  
 `~$ wget https://developer.nvidia.com/compute/cuda/8.0/Prod2/patches/2/cuda-repo-ubuntu1604-8-0-local-cublas-performance-update_8.0.61-1_amd64-deb`  
 
 Install the .deb package   
 `~$ sudo dpkg -i cuda-repo-ubuntu1604-8-0-local-cublas-performance-update_8.0.61-1_amd64-deb`  
-
-`$ sudo apt-get update`  
-`$ sudo apt-get install cuda`  
 
 Make those sym-links mentioned earlier:  
 `~$ sudo ln -s /usr/bin/gcc-5 /usr/local/cuda/bin/gcc`  
