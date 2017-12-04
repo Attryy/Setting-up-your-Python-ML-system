@@ -390,6 +390,9 @@ add the following line:
 `#define _GLIBCXX_USE_C99_MATH 1`  
 Save this edit.  
 
+Return to the OpenCV build directory  
+`~$ cd ~/cd ~/opencv-3.2.0/build/`  
+
 Since the following cmake command spans so many lines, copy and paste it into a text editor. Replace 'username' with your username. Then copy and paste that at the BASH prompt.  
 ```
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
