@@ -55,7 +55,7 @@ Then install the most recent NVIDIA driver using apt:
 
 `~$ sudo apt install nvidia-384 nvidia-384-dev`  
 
-The driver download takes several minutes. After the driver is installed, verify the installation by running:
+The driver download takes several minutes. After the driver is installed, restart the system. Then verify the installation by running:
 
 `~$ nvidia-smi`  
 
