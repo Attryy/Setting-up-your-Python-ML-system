@@ -430,7 +430,7 @@ Make symlink to OpenCV in new Python site-packages directory
 Many examples using CUDA to parallelize image-processing code is written in C++ and uses OpenCV functions. These examples assume that OpenCV is installed to the default directory under /usr/local, however we have installed ours under our virtual Python directory .ml36.   
 At this point you might be asking yourself, "why didn't he just install OpenCV to the default directory and then put a symlink in the appropriate virtual Python lib directory?". This might be the best way to do it...the truth is that in the past I have never used OpenCV except with Python and saw no reason for a system-wide install. Now that I am using OpenCV with C++ and NVCC, I will consider changing to a system-wide install of OpenCV. For now though, let's carry on.   
 
-Below are two things to do to ensure that our C++ code will work with OpenCV.  
+Below are three things to do to ensure that our C++ code will work with OpenCV.  
 
 At compile time, the linker **ld** needs to know where to find the shared library paths. We can set these manually in /etc/ld.so.conf.d  
 `~$ cd /etc/ld.so.conf.d`  
@@ -439,6 +439,9 @@ Add the following line to the file:
 /home/username/.ml36/lib/python3.6/site-packages/opencv/lib  
 Save the file, then apply the change with  
 `~$ sudo ldconfig`  
+
+We can also add the OpenCV library path to our .bashrc file. Add this line:  
+`export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/home/username/.ml36/lib/python3.6/site-packages/opencv/lib`  
 
 The next place we might need to specify paths to opencv is in our makefiles. Here is a Makefile from the first homework of Udacity's Intro To Parallel Programming, with explicit paths to our libraries and our header files:
 
