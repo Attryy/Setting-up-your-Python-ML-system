@@ -344,9 +344,7 @@ You should see the following output:
 ## _Section 2_ - Computer Vision (CV)
 
 #### A. Install OpenCV
-Many of my Computer Vision needs are met by SciKit-Image, but I often use OpenCV 3
-
-( this really seems to work...still verifying: ~$ pip install opencv-contrib-python )  
+Many of my Computer Vision needs are met by NumPy & SciKit-Image, but I often use OpenCV 3  
 
 Install these dependencies first. See what is required and what is optional here:  
 https://docs.opencv.org/master/d7/d9f/tutorial_linux_install.html  
