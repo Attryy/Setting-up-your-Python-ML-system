@@ -123,6 +123,12 @@ export PATH=/usr/local/cuda-9.0/bin${PATH:+:${PATH}}
 # In addition, the LD_LIBRARY_PATH variable needs to be set
 export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 ```
+Since we now have two versions of GCC and of G++ on our system, I will place the following lines in my .bashrc file to ensure that the default versions are the newer ones (version 7):  
+```  
+# make this the default gcc
+alias gcc='/usr/bin/gcc-7'
+alias g++='/usr/bin/g++-7'
+```  
 
 #### B. Download and Build Python 3.6.5 on Your System  
 
