@@ -332,11 +332,11 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D BUILD_EXAMPLES=ON ..
 ```
 
-Find out number of CPU cores in your machine
+Find out number of CPU cores in your machine  
 `~$ nproc`  
-You can run make with multiple cores with the -j flag. I'll use all but one of mine:
+You can run make with multiple cores with the -j flag. I'll use all but one of mine:  
 `~$ make -j7`  
-This will take a while... study Japanese... maybe clean the attic...
+This will take a while... study Japanese... maybe clean the attic...  
 
 ```
 $ make install
