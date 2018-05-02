@@ -167,7 +167,6 @@ Add the block below to your .bashrc file. Replace '/home/username' in the block 
 alias py36='/home/username/.ml36/bin/python3.6' # to use this Python
 alias pip36='/home/username/.ml36/bin/pip3.6' # to install packages within our venv
 alias jupyter-notebook_36='/home/username/.ml36/bin/jupyter-notebook' # Jupyter Notebook
-alias jupyter-themer='/home/username/.ml36/bin/jupyter-themer' # to change Jupyter theme
 # activate the py36 virtual environment
 act_ml36 () {
   . /home/username/.ml36/bin/./activate
@@ -236,7 +235,7 @@ It works! Type Ctrl-D to exit the interpreter and go back to the shell.
 
 Install some necessary / useful packages using pip   
 `$ pip36 install numpy scipy`  
-`$ pip36 install scikit-image`
+`$ pip36 install scikit-image`  
 `$ pip36 install scikit-learn`    
 `$ pip36 install h5py`        
 `$ pip36 install jupyter`  
