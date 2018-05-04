@@ -5,7 +5,7 @@ Most of my daily work involves the processing of video sequences from different 
 Note: this document was originally created to aid those beginning in machine learning. However its focus has shifted a bit so that it would perhaps be better named **_Setting up your Open-Source-Powered system for machine learning, video processing, scientific programming, signal processing, etc_**  
 
 **Linux**  
-These notes assume that the reader has or will install Ubuntu 18.04. My favorite variant, for both home and professional use, is Ubuntu-MATE which can be downloaded, either directly or via torrent, here:  
+These notes assume that the reader has installed or will install Ubuntu 18.04. My favorite variant, for both home and professional use, is Ubuntu-MATE which can be downloaded, either directly or via torrent, here:  
 http://ubuntu-mate.org/download/  
 
 **CUDA**  
@@ -278,7 +278,7 @@ To code in Atom with the ability to execute the code (with Ctrl+Shift+B) with ou
 ## _Section 2_ - Computer Vision (CV)
 
 #### A. Install OpenCV
-Many of my Computer Vision needs are met by NumPy & SciKit-Image, but I sometimes need libraries in OpenCv.   
+Many of my computer vision needs are met by NumPy & SciKit-Image, but I sometimes want to use certain libraries from OpenCv. Let's build it on our system.     
 
 First, update packages:
 ```
@@ -324,7 +324,7 @@ Create the opencv dir in your python site-packages dir
 
 ~$ act_ml36
 
-Run this in terminal, replacing 'username' with your home directory name.  
+Run this in terminal, replacing 'username' with the name of your home directory.  
 ```
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D CMAKE_INSTALL_PREFIX=/home/telemaque/.ml36/lib/python3.6/site-packages/opencv \
