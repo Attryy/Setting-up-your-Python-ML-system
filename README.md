@@ -272,7 +272,7 @@ We can now use three of our BASH aliases to use our new Python 3.6.5. To run the
 To run a Jupyter notebook powered by our new Python 3.6 installation, just type:  
 `~$ jupyter-notebook_36`  
 
-To code in Atom with the ability to execute the code (with Ctrl+Shift+B) with our new version of Python instead of the default version on our system, just type:  
+If have installed the Atom editor (https://atom.io/), you can execute the code (with Ctrl+Shift+B) with our new version of Python instead of the default version on our system. Do this by opening the editor with the alias:    
 `~$ atom36`  
 
 ## _Section 2_ - Computer Vision (CV)
