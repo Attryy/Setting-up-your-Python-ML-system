@@ -277,7 +277,7 @@ If have installed the Atom editor (https://atom.io/), you can execute the code (
 
 ## _Optional_ - PyQtGraph  
 
-Until recently, I have been satisfied with displaying video using custom Matplotlib functions. Lately though, it has become clear that I need to be able to display large images at faster framerates. For example, a customer requires live image display from their dual-camera sensor. Initial investigations point to PyQtGraph as the best and most Pythonic solution. I hope to have some updates on this in the near future. Here is how to install the dependances and the package itself:  
+Until recently, I have been satisfied with displaying video using custom Matplotlib functions. Lately though, it has become clear that I need to be able to display large images at faster framerates. For example, a customer requires live image display from their dual-camera sensor. Initial investigations point to PyQtGraph as the best and most Pythonic solution. I hope to have some updates on this in the near future. Here is how to install the dependencies and the package itself:  
 
 Install Qt5:
 ```
