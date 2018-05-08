@@ -275,6 +275,47 @@ To run a Jupyter notebook powered by our new Python 3.6 installation, just type:
 If have installed the Atom editor (https://atom.io/), you can execute the code (with Ctrl+Shift+B) with our new version of Python instead of the default version on our system. Do this by opening the editor with the alias:    
 `~$ atom36`  
 
+## _Optional_ - PyQtGraph  
+
+Until recently, I have been satisfied with displaying video using custom Matplotlib functions. Lately though, it has become clear that I need to be able to display large images at faster framerates. For example, a customer requires live image display from their dual-camera sensor. Initial investigations point to PyQtGraph as the best and most Pythonic solution. I hope to have some updates on this in the near future. Here is how to install the dependances and the package itself:  
+
+Install Qt5:
+```
+~$ sudo apt-get install python3-pyqt5
+~$ sudo apt-get install pyqt5-dev-tools
+~$ sudo apt-get install qttools5-dev-tools
+```
+
+Aside:  
+  Qt5 can be run from the terminal using qtchooser:
+  `~$ qtchooser -run-tool=designer -qt=5`  
+  or, you can set Qt5 as the default Qt by writing the following in /usr/lib/x86_64-linux-gnu/qt-default/qtchooser/default.conf:  
+  /usr/lib/x86_64-linux-gnu/qt5/bin  
+  /usr/lib/x86_64-linux-gnu  
+
+Install pyqt5:  
+`~$ pip36 install pyqt5`
+
+Install PyQtGraph:  
+`~$ pip36 install pyqtgraph`  
+
+Some functionality in PyQt5 requires OpenGL + pyopengl:  
+install OpenGL libraries:  
+`~$ sudo apt-get install mesa-utils`  
+
+install freeGlut:  
+`~$ sudo apt-get install freeglut3-dev`  
+
+install pyopengl:  
+`~$ pip36 install pyopengl`  
+
+Test it:
+```
+~$ py36
+>>> import pyqtgraph.examples
+>>> pyqtgraph.examples.run()
+```
+
 ## _Section 2_ - Computer Vision (CV)
 
 #### A. Install OpenCV
