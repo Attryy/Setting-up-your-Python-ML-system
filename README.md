@@ -5,7 +5,7 @@ Most of my daily work involves the processing of video sequences from different 
 Note: this document was originally created to aid those beginning in machine learning. However its focus has shifted a bit so that it would perhaps be better named **_Setting up your Open-Source-Powered system for machine learning, video processing, scientific programming, signal processing, etc_**  
 
 **Linux**  
-These notes assume that the reader has installed or will install Ubuntu 18.04. My favorite variant, for both home and professional use, is Ubuntu-MATE which can be downloaded, either directly or via torrent, here:  
+These notes assume that the reader has installed or will install Ubuntu 18.04. My favorite variant, for both personal and professional use, is Ubuntu-MATE which can be downloaded, either directly or via torrent, here:  
 http://ubuntu-mate.org/download/  
 
 **CUDA**  
