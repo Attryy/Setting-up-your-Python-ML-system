@@ -112,10 +112,10 @@ You should see a pretty smoke thingy.
 
 Download cuDNN 7 from
 https://developer.nvidia.com/rdp/cudnn-download
-(requires login)
-Uncompress and copy to the appropriate dirs (include & lib64) in /usr/local/cuda
+(requires login)  
+Uncompress and copy to the appropriate dirs (include & lib64) in /usr/local/cuda  
 
-Add the following to your .bashrc
+Add the following to your .bashrc  
 
 ```
 # The PATH variable needs to include /usr/local/cuda-9.0/bin
