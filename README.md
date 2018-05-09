@@ -203,12 +203,12 @@ Now let's use the first alias we created _py36_. Running this command starts our
 Run the py36 command and note the date and version number.  
 
 `$ py36`  
-Python 3.6.3 (default, Nov 22 2017, 23:23:32)
-[GCC 7.2.0] on linux
-Type "help", "copyright", "credits" or "license" for more information.
+Python 3.6.5 (default, Apr 27 2018, 21:07:13)  
+[GCC 7.3.0] on linux  
+Type "help", "copyright", "credits" or "license" for more information.  
 \>>>  
 
-now do this in the interpreter:
+now do this in the interpreter:  
 
 \>>> import this  
 The Zen of Python, by Tim Peters  
