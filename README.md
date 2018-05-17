@@ -244,8 +244,7 @@ Install some necessary / useful packages using pip
 `$ pip36 install scikit-image`  
 `$ pip36 install scikit-learn`    
 `$ pip36 install h5py`        
-`$ pip36 install jupyter`  
-`$ pip36 install pygame`    
+`$ pip36 install jupyter`   
 
 Install TensorFlow  
 If you do NOT have a GPU:    
@@ -318,8 +317,8 @@ Test it:
 
 ## _Section 2_ - Computer Vision (CV)
 
-#### A. Install OpenCV
-Many of my computer vision needs are met by NumPy & SciKit-Image, but I sometimes want to use certain libraries from OpenCv. Let's build it on our system.     
+#### A. Install OpenCV  
+Many of my computer vision needs are met by NumPy & SciKit-Image, but I sometimes want to use certain libraries from OpenCV. Let's build it on our system.     
 
 First, update packages:
 ```
